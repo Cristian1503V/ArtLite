@@ -89,12 +89,13 @@ public class ApplicationDbContext : DbContext
             Email = "sebas@gmail.com",
             HighlightedPhrase = "3D Character Artist",
             Biography = "3D Character Artist. I have a passion for 3D art. Currently working on my own personal projects!",
-            SocialInstagram = "",
-            SocialYoutube = "",
+            SocialInstagram = "https://www.instagram.com/sebacavazzoli.art",
+            SocialYoutube = "https://www.youtube.com/sebastiancavazzoli",
             SocialFacebook = "",
             SocialLinkedin = "",
             SocialFigma = "",
             ProfileImage = "https://cdna.artstation.com/p/users/avatars/000/583/624/large/21ab51c6fdec0656327acd1decc6b95f.jpg?1521491898",
+            ProfileBanner = "https://cdna.artstation.com/p/users/covers/000/583/624/default/73c0b86e24cfe09e6954896a1b24b5c0.jpg?1687826140"
         });
 
 

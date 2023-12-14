@@ -10,6 +10,7 @@ public record CreatorResponse
     string Biography,
     SocialsResponse Socials,
     string ProfileImage,
+    string ProfileBanner,
     List<ArtworkResponseBase> Artworks,
     DateTime CreatedAt,
     DateTime UpdatedAt

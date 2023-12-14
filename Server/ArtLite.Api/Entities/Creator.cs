@@ -18,6 +18,7 @@ public class Creator
     public string SocialLinkedin { get; set; } = null!;
     public string SocialFigma { get; set; } = null!;
     public string ProfileImage { get; set; } = null!;
+    public string ProfileBanner { get; set; } = null!;
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
 

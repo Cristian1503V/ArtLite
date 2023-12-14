@@ -66,6 +66,7 @@ public class CreatorController : ApiController
             Biography: creator.Biography,
             Socials: socials,
             ProfileImage: creator.ProfileImage,
+            ProfileBanner: creator.ProfileBanner,
             Artworks: artworks,
             CreatedAt: creator.CreatedAt,
             UpdatedAt: creator.UpdatedAt
