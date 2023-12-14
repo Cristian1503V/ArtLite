@@ -43,9 +43,10 @@ GET /api/creators/:idCreator
         "youtube?": "",
         "facebook?": "",
         "linkedin?": "",
-        "tiktok?": ""
+        "figma?": ""
     },
     "profileImage?": "https://cdna.artstation.com/p/users/avatars/000/583/624/large/21ab51c6fdec0656327acd1decc6b95f.jpg?1521491898",
+    "profileBanner?": "",
     "artworks": [
         {
             "idArtwork": "",
