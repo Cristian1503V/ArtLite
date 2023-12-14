@@ -4,12 +4,13 @@ public record CreatorResponse
 (
     Guid IdCreator,
     string Username,
+    string Slug,
     string Email,
     string HighlightedPhrase,
     string Biography,
     SocialsResponse Socials,
     string ProfileImage,
-    List<ArtworkResponse> Artworks,
+    List<ArtworkResponseBase> Artworks,
     DateTime CreatedAt,
     DateTime UpdatedAt
 );
@@ -20,10 +21,10 @@ public record SocialsResponse
     string Youtube,
     string Facebook,
     string Linkedin,
-    string TikTok
+    string Figma
 );
 
-public record ArtworkResponse
+public record ArtworkResponseBase
 (
     Guid IdArtwork,
     string Title,

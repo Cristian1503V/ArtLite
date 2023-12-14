@@ -7,7 +7,7 @@ public record ArtworkResponse
     string Description,
     List<string> Tags,
     List<ImageResponse> Images,
-    CreatorResponse Creator,
+    CreatorResponseBase Creator,
     DateTime CreatedAt,
     DateTime UpdatedAt
 );
@@ -18,7 +18,7 @@ public record ImageResponse
     string Src
 );
 
-public record CreatorResponse
+public record CreatorResponseBase
 (
     Guid IdCreator,
     string Username,
