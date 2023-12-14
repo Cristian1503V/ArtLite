@@ -1,19 +1,28 @@
 
+using ArtLite.Api;
+using ArtLite.Api.Persistence;
+using ArtLite.Api.Services;
 using ArtLite.Api.Settings;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 {
     var services = builder.Services;
     var configuration = builder.Configuration;
 
-    // services.AddDbContext<AppDbContext>(options =>
-    // {
-    //     options.UseSqlServer("Server=.;Database=DbArtStationLite;TrustServerCertificate=True;Trusted_Connection=True");
-    //     options.EnableSensitiveDataLogging();
-    // });
+    services.AddTransient<DataGenerator>();
+    services.AddDbContext<ApplicationDbContext>(options =>
+    {
+        options.UseSqlServer("Server=.;Database=DbArtLite;TrustServerCertificate=True;Trusted_Connection=True");
+        options.EnableSensitiveDataLogging();
+    });
 
     // services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<Program>());
     services.Configure<CloudinarySettings>(configuration.GetSection(CloudinarySettings.SectionName));
+
+    services.AddScoped<IArtworkService, ArtworkService>();
+    services.AddScoped<ICreatorService, CreatorService>();
+    services.AddScoped<IImageUploader, CloudinaryService>();
 
 
     services.AddControllers();
