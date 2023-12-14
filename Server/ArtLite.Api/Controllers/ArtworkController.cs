@@ -10,12 +10,12 @@ namespace ArtLite.Api.Controllers;
 public class ArtworkController : ApiController
 {
     private readonly IArtworkService _artworkService;
-    private readonly IImageAccessor _imageAccessor;
+    private readonly IImageUploader _imageUploader;
 
-    public ArtworkController(IArtworkService artworkService, IImageAccessor imageAccessor)
+    public ArtworkController(IArtworkService artworkService, IImageUploader imageUploader)
     {
         _artworkService = artworkService;
-        _imageAccessor = imageAccessor;
+        _imageUploader = imageUploader;
     }
 
     [HttpPost]
@@ -30,7 +30,7 @@ public class ArtworkController : ApiController
         {
             int index = images.IndexOf(image);
 
-            var uploadedImage = await _imageAccessor.AddImage(file: image.File);
+            var uploadedImage = await _imageUploader.AddImage(file: image.File);
 
             uploadedImage.Order = index + 1;
             uploadedImages.Add(uploadedImage);
@@ -72,7 +72,7 @@ public class ArtworkController : ApiController
         );
     }
 
-    [HttpPut("{id:guid}")]
+    [HttpDelete("{id:guid}")]
     public async Task<IActionResult> DeleteArtwork(Guid id)
     {   
         var getArtworkByIdResult = await _artworkService.DeleteArtwork(id);
@@ -116,7 +116,7 @@ public class ArtworkController : ApiController
         var tags = artwork.Tags
             .Select(tag => tag.TagName).ToList();
 
-        var creator = new CreatorResponse (
+        var creator = new CreatorResponseBase (
             IdCreator: artwork.Creator.IdCreator,
             Username: artwork.Creator.Username,
             ProfileImage: artwork.Creator.ProfileImage

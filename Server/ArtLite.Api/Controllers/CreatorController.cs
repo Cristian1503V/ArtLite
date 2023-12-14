@@ -1,4 +1,5 @@
-﻿using ArtLite.Api.Controllers;
+﻿using ArtLite.Api.Contracts.Artwork;
+using ArtLite.Api.Contracts.Creator;
 using ArtLite.Api.Entities;
 using ArtLite.Api.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -15,25 +16,62 @@ public class CreatorController : ApiController
         _creatorService = creatorService;
     }
 
-    [HttpGet("{id:guid}")]
-    public async Task<IActionResult> GetCreator (Guid id)
+    // [HttpGet("{id:guid}")]
+    // public async Task<IActionResult> GetCreator (Guid id)
+    // {
+    //     var getCreatorByIdResult = await _creatorService.GetCreatorById(id);
+
+    //     return getCreatorByIdResult.Match(
+    //         creator => Ok(creator),
+    //         errors => Problem(errors)
+    //     );
+    // }
+
+    [HttpGet("{slug}")]
+    public async Task<IActionResult> GetCreator (string slug)
     {
-        var getCreatorByIdResult = await _creatorService.GetCreatorById(id);
+        var getCreatorByIdResult = await _creatorService.GetCreatorBySlug(slug);
 
         return getCreatorByIdResult.Match(
-            creator => Ok(creator),
+            creator => Ok(MapCreatorResponse(creator)),
             errors => Problem(errors)
         );
     }
 
-    [HttpGet("{id:string}")]
-    public async Task<IActionResult> GetCreator (string id)
+    private static CreatorResponse MapCreatorResponse(Creator creator)
     {
-        var getCreatorByIdResult = await _creatorService.GetCreatorBySlug(id);
+        var socials = new SocialsResponse (
+            Instagram: creator.SocialInstagram,
+            Youtube: creator.SocialYoutube,
+            Facebook: creator.SocialFacebook,
+            Linkedin: creator.SocialLinkedin,
+            Figma: creator.SocialFigma
+        );
 
-        return getCreatorByIdResult.Match(
-            creator => Ok(creator),
-            errors => Problem(errors)
+        var artworks = creator.Artworks
+            .Select(a => new ArtworkResponseBase (
+                IdArtwork: a.IdArtwork,
+                Title: a.Title,
+                Thumbnail: a.Images?.SingleOrDefault(i => i.Order == 1)?.Src ?? "",
+                CreatedAt: a.CreatedAt
+            )).ToList();
+
+
+        return new CreatorResponse (
+            IdCreator: creator.IdCreator,
+            Username: creator.Username,
+            Slug: creator.Slug,
+            Email: creator.Email,
+            HighlightedPhrase: creator.HighlightedPhrase,
+            Biography: creator.Biography,
+            Socials: socials,
+            ProfileImage: creator.ProfileImage,
+            Artworks: artworks,
+            CreatedAt: creator.CreatedAt,
+            UpdatedAt: creator.UpdatedAt
         );
     }
+
+
+
 }
