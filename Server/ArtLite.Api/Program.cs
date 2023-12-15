@@ -27,6 +27,7 @@ var builder = WebApplication.CreateBuilder(args);
 
     services.AddScoped<IArtworkService, ArtworkService>();
     services.AddScoped<ICreatorService, CreatorService>();
+    services.AddScoped<ITagService, TagService>();
     services.AddScoped<IImageUploader, CloudinaryService>();
 
 
