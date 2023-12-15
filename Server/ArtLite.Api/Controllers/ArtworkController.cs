@@ -12,6 +12,8 @@ public class ArtworkController : ApiController
     private readonly IArtworkService _artworkService;
     private readonly IImageUploader _imageUploader;
 
+    private readonly Guid idCreatorExample = Guid.Parse("0402fa21-7faf-49b6-994e-10ffe3e022ae"); 
+
     public ArtworkController(IArtworkService artworkService, IImageUploader imageUploader)
     {
         _artworkService = artworkService;
@@ -21,16 +23,15 @@ public class ArtworkController : ApiController
     [HttpPost]
     public async Task<IActionResult> AddArtwork([FromForm] ArtworkCreateRequest artworkCreateRequest)
     {
-        var idCreator = Guid.NewGuid();
         var uploadedImages = new List<Image>();
 
-        var images = artworkCreateRequest.Images;
+        var images = artworkCreateRequest.Images.ToList();
 
         foreach(var image in images)
         {
             int index = images.IndexOf(image);
 
-            var uploadedImage = await _imageUploader.AddImage(file: image.File);
+            var uploadedImage = await _imageUploader.AddImage(file: image);
 
             uploadedImage.Order = index + 1;
             uploadedImages.Add(uploadedImage);
@@ -38,6 +39,7 @@ public class ArtworkController : ApiController
 
         var artwork = MapArtworkRequest(artworkCreateRequest);
         artwork.Images = uploadedImages;
+        artwork.CreatorId = idCreatorExample;
 
         var addArtworkResult = await _artworkService.AddArtwork(artwork);
 
