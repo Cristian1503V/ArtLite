@@ -14,14 +14,20 @@ const config: Config = {
         input: "#331e3d",
         thumbnailContainer: "#000000",
 
+        secondary: {
+          DEFAULT: "",
+          foreground: "#aaaaae",
+        },
         muted: {
           DEFAULT: "#404044",
           foreground: "#e6e6ea",
+          hover: "#505054",
         },
 
         accent: {
-          DEFAULT: "#13aff0",
+          DEFAULT: "#26bbff",
           foreground: "#101014",
+          hover: "#74dafde8",
         },
 
         aside: {
@@ -33,4 +39,3 @@ const config: Config = {
   plugins: [require("tailwindcss-animated")],
 }
 export default config
-
