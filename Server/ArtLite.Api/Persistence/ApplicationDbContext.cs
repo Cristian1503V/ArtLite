@@ -23,9 +23,21 @@ public class ApplicationDbContext : DbContext
             .HasIndex(c => c.Email)
             .IsUnique();
 
+        modelBuilder.Entity<Creator>()
+            .HasIndex(c => c.Username)
+            .IsUnique();
+
        modelBuilder.Entity<Creator>()
             .HasIndex(c => c.Slug)
             .IsUnique();
+
+       modelBuilder.Entity<Tag>()
+            .HasIndex(c => c.TagName)
+            .IsUnique();
+
+        modelBuilder.Entity<Image>()
+        .HasIndex(i => new { i.Order, i.ArtworkId })
+        .IsUnique();
 
         modelBuilder.Entity<Creator>()
             .Property(c => c.CreatedAt)
@@ -97,7 +109,7 @@ public class ApplicationDbContext : DbContext
             ProfileBanner = "https://cdna.artstation.com/p/users/covers/000/583/624/default/73c0b86e24cfe09e6954896a1b24b5c0.jpg?1687826140"
         });
 
-        List<Artwork> artworks = new()
+        List<Artwork> artworksList = new()
         {
             new() {
                 Title = "3D Character",
@@ -279,13 +291,13 @@ public class ApplicationDbContext : DbContext
             }
         };
 
-        var artworksGenerated = Enumerable.Range(1, artworks.Count).Select(_ => _dataGenerator.GenerateArtwork()).ToList();
+        var artworksGenerated = Enumerable.Range(1, artworksList.Count).Select(_ => _dataGenerator.GenerateArtwork()).ToList();
         List<Guid> artworksGuids = Enumerable.Range(0, artworksGenerated.Count).Select(_ => Guid.NewGuid()).ToList();
         modelBuilder.Entity<Artwork>().HasData(artworksGenerated.Select((artwork, index) =>
             new Artwork
             {
                 IdArtwork = artworksGuids[index],
-                Title = artwork.Title,
+                Title = artworksList[index].Title,
                 Description = artwork.Description,
                 CreatedAt = artwork.CreatedAt,
                 CreatorId = idCreator,
@@ -293,16 +305,16 @@ public class ApplicationDbContext : DbContext
         ).ToList());
 
 
-        int totalImageCount = artworks.SelectMany(a => a.Images).Count();
+        int totalImageCount = artworksList.SelectMany(a => a.Images).Count();
         modelBuilder.Entity<Image>().HasData(
-            artworks.SelectMany((artwork, artworkIndex) =>
-                artwork.Images.Select((image) =>
+            artworksList.SelectMany((artwork, artworkIndex) =>
+                artwork.Images.Select((image, imageIndex) =>
                     new Image
                     {
                         IdImage = Guid.NewGuid(),
                         CloudId = "",
                         Src = image.Src,
-                        Order = 1,
+                        Order = imageIndex + 1,
                         ArtworkId = artworksGuids[artworkIndex],
                     }
                 )
