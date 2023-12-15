@@ -19,6 +19,22 @@ public class ApplicationDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        // modelBuilder.Entity<Creator>()
+        //     .Property(c => c.IdCreator)
+        //     .ValueGeneratedOnAdd();
+
+        // modelBuilder.Entity<Artwork>()
+        //     .Property(c => c.IdArtwork)
+        //     .ValueGeneratedOnAdd();
+
+        // modelBuilder.Entity<Image>()
+        //     .Property(c => c.IdImage)
+        //     .ValueGeneratedOnAdd();
+
+        // modelBuilder.Entity<Tag>()
+        //     .Property(c => c.IdTag)
+        //     .ValueGeneratedOnAdd();
+
         modelBuilder.Entity<Creator>()
             .HasIndex(c => c.Email)
             .IsUnique();
@@ -29,26 +45,25 @@ public class ApplicationDbContext : DbContext
 
         modelBuilder.Entity<Creator>()
             .Property(c => c.CreatedAt)
-            .HasDefaultValueSql("GETUTCDATE()");
+            .HasDefaultValueSql("GETDATE()");
 
         modelBuilder.Entity<Creator>()
             .Property(c => c.UpdatedAt)
-            .ValueGeneratedOnUpdate()
-            .HasDefaultValueSql("GETUTCDATE()");
-
+            .HasComputedColumnSql("GETDATE()")
+            .ValueGeneratedOnAddOrUpdate();
 
         modelBuilder.Entity<Artwork>()
             .Property(c => c.CreatedAt)
-            .HasDefaultValueSql("GETUTCDATE()");
+            .HasDefaultValueSql("GETDATE()");
 
         modelBuilder.Entity<Artwork>()
             .Property(c => c.UpdatedAt)
-            .ValueGeneratedOnUpdate()
-            .HasDefaultValueSql("GETUTCDATE()");
+            .HasComputedColumnSql("GETDATE()")
+            .ValueGeneratedOnAddOrUpdate();
 
         modelBuilder.Entity<Image>()
             .Property(c => c.CreatedAt)
-            .HasDefaultValueSql("GETUTCDATE()");
+            .HasDefaultValueSql("GETDATE()");
 
 
         modelBuilder.Entity<Artwork>()
@@ -99,26 +114,178 @@ public class ApplicationDbContext : DbContext
         });
 
 
-        List<Image> images = new()
+        // List<Image> images = new()
+        // {
+        //     new Image { Src = "https://cdnb.artstation.com/p/assets/images/images/070/397/485/20231212212844/smaller_square/sebastian-cavazzoli-2313313.jpg?1702438125" },
+        //     new Image { Src = "https://cdnb.artstation.com/p/assets/images/images/064/384/223/smaller_square/sebastian-cavazzoli-1.jpg?1687806929" },
+        //     new Image { Src = "https://cdnb.artstation.com/p/assets/video_clips/images/066/131/241/smaller_square/sebastian-cavazzoli-thumb.jpg?1692121620" },
+        //     new Image { Src = "https://cdnb.artstation.com/p/assets/images/images/062/527/639/smaller_square/sebastian-cavazzoli-04a4ddc0-1c5c-42a3-b4ff-5e8c77014ad4.jpg?1683333990" },
+        //     new Image { Src = "https://cdnb.artstation.com/p/assets/images/images/058/444/123/smaller_square/sebastian-cavazzoli-1b.jpg?1674161052" },
+        //     new Image { Src = "https://cdnb.artstation.com/p/assets/images/images/055/727/009/smaller_square/sebastian-cavazzoli-1.jpg?1667597373" },
+        //     new Image { Src = "https://cdnb.artstation.com/p/assets/covers/images/052/375/327/20220807090628/smaller_square/sebastian-cavazzoli-sebastian-cavazzoli-cheloportada2.jpg?1659881189" },
+        //     new Image { Src = "https://cdna.artstation.com/p/assets/video_clips/images/045/020/050/smaller_square/sebastian-cavazzoli-thumb.jpg?1641742817" },
+        //     new Image { Src = "https://cdna.artstation.com/p/assets/covers/images/037/967/798/smaller_square/sebastian-cavazzoli-sebastian-cavazzoli-3.jpg?1621816194" },
+        //     new Image { Src = "https://cdna.artstation.com/p/assets/images/images/036/831/246/20210418093453/smaller_square/sebastian-cavazzoli-widefsnew.jpg?1618756493" },
+        //     new Image { Src = "https://cdnb.artstation.com/p/assets/images/images/038/143/017/smaller_square/sebastian-cavazzoli-7.jpg?1622294979" },
+        //     new Image { Src = "https://cdnb.artstation.com/p/assets/images/images/070/397/631/smaller_square/sebastian-cavazzoli-close2.jpg?1702438582" },
+        //     new Image { Src = "https://cdna.artstation.com/p/assets/covers/images/041/445/024/20210915103933/smaller_square/sebastian-cavazzoli-sebastian-cavazzoli-2cc.jpg?1631720373" },
+        //     new Image { Src = "https://cdnb.artstation.com/p/assets/covers/images/036/813/465/smaller_square/sebastian-cavazzoli-sebastian-cavazzoli-1.jpg?1618687643" },
+        //     new Image { Src = "https://cdnb.artstation.com/p/assets/covers/images/034/485/459/20210203223805/smaller_square/sebastian-cavazzoli-sebastian-cavazzoli-01.jpg?1612413485" }
+        // };
+
+        // List<Artwork> artworks = new()
+        // {
+        //     new Artwork {
+        //         Title = "3D Character",
+        //         Images = new List<Image>() {
+        //             new() { Src = "https://cdnb.artstation.com/p/assets/images/images/070/397/485/20231212212844/smaller_square/sebastian-cavazzoli-2313313.jpg?1702438125"}
+        //         }
+        //     },
+        //     new Artwork {
+        //         Title = "Pirate",
+        //         Images = new List<Image>() {
+        //             new() { Src = "https://cdnb.artstation.com/p/assets/images/images/064/384/223/smaller_square/sebastian-cavazzoli-1.jpg?1687806929"}
+        //         }
+        //     },
+        //     new Artwork { Title = "Tribal Mage"},
+        //     new Artwork { Title = "Joel - Pedro Pascal",},
+        //     new Artwork { Title = "Goblin"},
+        //     new Artwork { Title = "Orc Lady"},
+        //     new Artwork { Title = "Lemmy"},
+        //     new Artwork { Title = "WoW Gnome Warrior"},
+        //     new Artwork { Title = "Knight fanart from Priston"},
+        //     new Artwork { Title = "Fighter from Priston Tale",},
+        //     new Artwork { Title = "Pike Man"},
+        //     new Artwork { Title = "Mechanician"},
+        //     new Artwork { Title = "Atalanta"},
+        //     new Artwork { Title = "Goblins"},
+        //     new Artwork { Title = "Stylized Cyclops"}
+        // };
+
+        List<Artwork> artworks = new()
         {
-            new Image { Src = "https://cdnb.artstation.com/p/assets/images/images/070/397/485/20231212212844/smaller_square/sebastian-cavazzoli-2313313.jpg?1702438125" },
-            new Image { Src = "https://cdnb.artstation.com/p/assets/images/images/064/384/223/smaller_square/sebastian-cavazzoli-1.jpg?1687806929" },
-            new Image { Src = "https://cdnb.artstation.com/p/assets/video_clips/images/066/131/241/smaller_square/sebastian-cavazzoli-thumb.jpg?1692121620" },
-            new Image { Src = "https://cdnb.artstation.com/p/assets/images/images/062/527/639/smaller_square/sebastian-cavazzoli-04a4ddc0-1c5c-42a3-b4ff-5e8c77014ad4.jpg?1683333990" },
-            new Image { Src = "https://cdnb.artstation.com/p/assets/images/images/058/444/123/smaller_square/sebastian-cavazzoli-1b.jpg?1674161052" },
-            new Image { Src = "https://cdnb.artstation.com/p/assets/images/images/055/727/009/smaller_square/sebastian-cavazzoli-1.jpg?1667597373" },
-            new Image { Src = "https://cdnb.artstation.com/p/assets/covers/images/052/375/327/20220807090628/smaller_square/sebastian-cavazzoli-sebastian-cavazzoli-cheloportada2.jpg?1659881189" },
-            new Image { Src = "https://cdna.artstation.com/p/assets/video_clips/images/045/020/050/smaller_square/sebastian-cavazzoli-thumb.jpg?1641742817" },
-            new Image { Src = "https://cdna.artstation.com/p/assets/covers/images/037/967/798/smaller_square/sebastian-cavazzoli-sebastian-cavazzoli-3.jpg?1621816194" },
-            new Image { Src = "https://cdna.artstation.com/p/assets/images/images/036/831/246/20210418093453/smaller_square/sebastian-cavazzoli-widefsnew.jpg?1618756493" },
-            new Image { Src = "https://cdnb.artstation.com/p/assets/images/images/038/143/017/smaller_square/sebastian-cavazzoli-7.jpg?1622294979" },
-            new Image { Src = "https://cdnb.artstation.com/p/assets/images/images/070/397/631/smaller_square/sebastian-cavazzoli-close2.jpg?1702438582" },
-            new Image { Src = "https://cdna.artstation.com/p/assets/covers/images/041/445/024/20210915103933/smaller_square/sebastian-cavazzoli-sebastian-cavazzoli-2cc.jpg?1631720373" },
-            new Image { Src = "https://cdnb.artstation.com/p/assets/covers/images/036/813/465/smaller_square/sebastian-cavazzoli-sebastian-cavazzoli-1.jpg?1618687643" },
-            new Image { Src = "https://cdnb.artstation.com/p/assets/covers/images/034/485/459/20210203223805/smaller_square/sebastian-cavazzoli-sebastian-cavazzoli-01.jpg?1612413485" }
+            new() {
+                Title = "3D Character",
+                Images = new List<Image>
+                {
+                    new() { Src = "https://cdnb.artstation.com/p/assets/images/images/070/397/485/20231212212844/smaller_square/sebastian-cavazzoli-2313313.jpg?1702438125" }
+                }
+            },
+            new()
+            {
+                Title = "Pirate",
+                Images = new List<Image>
+                {
+                    new() { Src = "https://cdnb.artstation.com/p/assets/images/images/064/384/223/smaller_square/sebastian-cavazzoli-1.jpg?1687806929" }
+                }
+            },
+            new()
+            {
+                Title = "Tribal Mage",
+                Images = new List<Image>
+                {
+                    new() { Src = "https://cdnb.artstation.com/p/assets/video_clips/images/066/131/241/smaller_square/sebastian-cavazzoli-thumb.jpg?1692121620" }
+                }
+            },
+            new()
+            {
+                Title = "Joel - Pedro Pascal",
+                Images = new List<Image>
+                {
+                    new() { Src = "https://cdnb.artstation.com/p/assets/images/images/062/527/639/smaller_square/sebastian-cavazzoli-04a4ddc0-1c5c-42a3-b4ff-5e8c77014ad4.jpg?1683333990" }
+                }
+            },
+            new()
+            {
+                Title = "Goblin",
+                Images = new List<Image>
+                {
+                    new() { Src = "https://cdnb.artstation.com/p/assets/images/images/058/444/123/smaller_square/sebastian-cavazzoli-1b.jpg?1674161052" }
+                }
+            },
+            new()
+            {
+                Title = "Orc Lady",
+                Images = new List<Image>
+                {
+                    new() { Src = "https://cdnb.artstation.com/p/assets/images/images/055/727/009/smaller_square/sebastian-cavazzoli-1.jpg?1667597373" }
+                }
+            },
+            new()
+            {
+                Title = "Lemmy",
+                Images = new List<Image>
+                {
+                    new() { Src = "https://cdnb.artstation.com/p/assets/covers/images/052/375/327/20220807090628/smaller_square/sebastian-cavazzoli-sebastian-cavazzoli-cheloportada2.jpg?1659881189" }
+                }
+            },
+            new()
+            {
+                Title = "WoW Gnome Warrior",
+                Images = new List<Image>
+                {
+                    new() { Src = "https://cdna.artstation.com/p/assets/video_clips/images/045/020/050/smaller_square/sebastian-cavazzoli-thumb.jpg?1641742817" }
+                }
+            },
+            new()
+            {
+                Title = "Knight fanart from Priston",
+                Images = new List<Image>
+                {
+                    new() { Src = "https://cdna.artstation.com/p/assets/covers/images/037/967/798/smaller_square/sebastian-cavazzoli-sebastian-cavazzoli-3.jpg?1621816194" }
+                }
+            },
+            new()
+            {
+                Title = "Fighter from Priston Tale",
+                Images = new List<Image>
+                {
+                    new() { Src = "https://cdna.artstation.com/p/assets/images/images/036/831/246/20210418093453/smaller_square/sebastian-cavazzoli-widefsnew.jpg?1618756493" }
+                }
+            },
+            new()
+            {
+                Title = "Pike Man",
+                Images = new List<Image>
+                {
+                    new() { Src = "https://cdnb.artstation.com/p/assets/images/images/038/143/017/smaller_square/sebastian-cavazzoli-7.jpg?1622294979" }
+                }
+            },
+            new()
+            {
+                Title = "Mechanician",
+                Images = new List<Image>
+                {
+                    new() { Src = "https://cdnb.artstation.com/p/assets/images/images/070/397/631/smaller_square/sebastian-cavazzoli-close2.jpg?1702438582" }
+                }
+            },
+            new()
+            {
+                Title = "Atalanta",
+                Images = new List<Image>
+                {
+                    new() { Src = "https://cdna.artstation.com/p/assets/covers/images/041/445/024/20210915103933/smaller_square/sebastian-cavazzoli-sebastian-cavazzoli-2cc.jpg?1631720373" }
+                }
+            },
+            new()
+            {
+                Title = "Goblins",
+                Images = new List<Image>
+                {
+                    new() { Src = "https://cdnb.artstation.com/p/assets/covers/images/036/813/465/smaller_square/sebastian-cavazzoli-sebastian-cavazzoli-1.jpg?1618687643" }
+                }
+            },
+            new()
+            {
+                Title = "Stylized Cyclops",
+                Images = new List<Image>
+                {
+                    new() { Src = "https://cdnb.artstation.com/p/assets/covers/images/034/485/459/20210203223805/smaller_square/sebastian-cavazzoli-sebastian-cavazzoli-01.jpg?1612413485" }
+                }
+            }
         };
 
-        var artworksGenerated = Enumerable.Range(1, images.Count).Select(_ => _dataGenerator.GenerateArtwork()).ToList();
+        var artworksGenerated = Enumerable.Range(1, artworks.Count).Select(_ => _dataGenerator.GenerateArtwork()).ToList();
         List<Guid> artworksGuids = Enumerable.Range(0, artworksGenerated.Count).Select(_ => Guid.NewGuid()).ToList();
         modelBuilder.Entity<Artwork>().HasData(artworksGenerated.Select((artwork, index) =>
             new Artwork
@@ -132,17 +299,62 @@ public class ApplicationDbContext : DbContext
         ).ToList());
 
 
-        List<Guid> imagesGuids = Enumerable.Range(0, images.Count).Select(_ => Guid.NewGuid()).ToList();
-        modelBuilder.Entity<Image>().HasData(images.Select((image, index) =>
-            new Image
-            {
-                IdImage = imagesGuids[index],
-                CloudId = "",
-                Src = image.Src,
-                Order = 1,
-                ArtworkId = artworksGuids[index],
-            }
-        ).ToList());
+        // List<Guid> imagesGuids = Enumerable.Range(0, artworks.Count).Select(_ => Guid.NewGuid()).ToList();
+        // modelBuilder.Entity<Image>().HasData(artworks.Select((image, index) =>
+        //     new Image
+        //     {
+        //         IdImage = imagesGuids[index],
+        //         CloudId = "",
+        //         Src = image.Src,
+        //         Order = 1,
+        //         ArtworkId = artworksGuids[index],
+        //     }
+        // ).ToList());
+
+        int totalImageCount = artworks.SelectMany(a => a.Images).Count();
+        // List<Guid> imagesGuids = Enumerable.Range(0, totalImageCount).Select(_ => Guid.NewGuid()).ToList();
+        // modelBuilder.Entity<Image>().HasData(artworks.Select((artwork, artworkIndex) =>
+        //     artwork.Images.Select((image, imageIndex) =>
+        //         new Image
+        //         {
+        //             // IdImage = imagesGuids[artworkIndex * totalImageCount + imageIndex],
+        //             IdImage = Guid.NewGuid(),
+        //             CloudId = "",
+        //             Src = image.Src,
+        //             Order = 1,
+        //             ArtworkId = artworksGuids[artworkIndex],
+        //         }
+        //     )
+        // ).ToList());
+
+        // artworks.Select((artwork, artworkIndex) =>
+        //     modelBuilder.Entity<Image>().HasData(artwork.Images.Select((image) =>
+        //         new Image
+        //         {
+        //             IdImage = Guid.NewGuid(),
+        //             CloudId = "",
+        //             Src = image.Src,
+        //             Order = 1,
+        //             ArtworkId = artworksGuids[artworkIndex],
+        //         }
+        //     ).ToList())
+        // );
+
+
+        modelBuilder.Entity<Image>().HasData(
+            artworks.SelectMany((artwork, artworkIndex) =>
+                artwork.Images.Select((image) =>
+                    new Image
+                    {
+                        IdImage = Guid.NewGuid(),
+                        CloudId = "",
+                        Src = image.Src,
+                        Order = 1,
+                        ArtworkId = artworksGuids[artworkIndex],
+                    }
+                )
+            ).ToList()
+        );
 
 
         var random = new Random();
