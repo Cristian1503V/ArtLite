@@ -1,17 +1,22 @@
 import {
+  ArrowUp,
   Bookmark,
   Command,
   Facebook,
   Figma,
   Heart,
+  Image,
   Instagram,
   Linkedin,
   LogIn,
   MailPlus,
   MessageSquare,
   Pencil,
+  Rocket,
   ThumbsUp,
+  Upload,
   UserPlus,
+  X,
   Youtube,
   type IconNode as LucideIcon,
 } from "lucide-react"
@@ -33,21 +38,20 @@ export const Icons = {
   linkedin: Linkedin,
   figma: Figma,
   youtube: Youtube,
+  upload: Upload,
+  rocket: Rocket,
+  image: Image,
+  arrowUp: ArrowUp,
+  close: X,
 }
 
 export function AppIcon() {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="35"
-      height="30"
-      className="text-accent-foreground"
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="31">
       <path
         fill="#13aff0"
-        fillRule="evenodd"
-        d="M35 24.354c0-.704-.208-1.36-.565-1.91L22.937 2.525A3.536 3.536 0 0 0 19.813.652h-6.077l17.76 30.666 2.8-4.833c.553-.925.704-1.334.704-2.131Zm-35-.037 2.956 5.093h.001a3.536 3.536 0 0 0 3.157 1.938h19.624l-4.072-7.03H0ZM10.832 5.621l7.938 13.701H2.893l7.939-13.701Z"
-        clipRule="evenodd"
+        d="M35 24.35c0-.7-.2-1.36-.56-1.9L22.94 2.51A3.54 3.54 0 0 0 19.8.65h-6.07L31.5 31.32l2.8-4.83c.55-.93.7-1.34.7-2.14Zm-35-.03 2.96 5.09a3.54 3.54 0 0 0 3.15 1.94h19.63l-4.07-7.03H0Zm10.83-18.7 7.94 13.7H2.89l7.94-13.7Z"
+        transform="scale(0.85)"
       />
     </svg>
   )
