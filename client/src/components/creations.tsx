@@ -27,7 +27,7 @@ export default function Creations({ creator }: CreatorProps) {
 
   return (
     <div className="flex h-full w-full basis-[100%] flex-col gap-6 pb-6">
-      <div className="flex h-[307px] w-full items-center justify-center overflow-hidden rounded-2xl bg-slate-300">
+      <div className="flex h-[307px] w-full items-center justify-center overflow-hidden rounded-2xl">
         <Image
           src={profileBanner ?? ""}
           alt=""

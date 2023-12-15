@@ -27,7 +27,7 @@ export default async function CreatorPage({ params }: CreatorPageProps) {
   if (!creator) notFound()
 
   return (
-    <div className="relative flex h-full w-full gap-6 px-6">
+    <div className="relative flex h-full w-full flex-1 gap-6 px-6">
       <Creations creator={creator} />
       <AsideCreator>
         <ProfileInformation creator={creator} />
