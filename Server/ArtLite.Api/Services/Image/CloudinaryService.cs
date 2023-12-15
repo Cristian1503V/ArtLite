@@ -1,5 +1,4 @@
 ﻿using ArtLite.Api.Entities;
-using ArtLite.Api.ServiceContracts;
 using ArtLite.Api.Settings;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
@@ -53,8 +52,14 @@ public class CloudinaryService : IImageUploader
         };
     }
 
-    public Task<bool> DeleteImage(string publicId)
+    public async Task<bool> DeleteImage(string publicId)
     {
-        throw new NotImplementedException();
+        if (string.IsNullOrEmpty(publicId)) return false;
+
+        var deleteParams = new DeletionParams(publicId);
+
+        var result = await _cloudinary.DestroyAsync(deleteParams);
+
+       return result.Result == "ok";
     }
 }
