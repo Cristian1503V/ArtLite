@@ -15,7 +15,9 @@
   - [Delete Artwork](#delete-artwork)
     - [Delete Artwork Request](#delete-artwork-request)
     - [Delete Artwork Response](#delete-artwork-response)
-
+  - [Get Tag List](#get-tag-list)
+    - [Get Tag List Request](#get-tag-list-request)
+    - [Get Tag List Response](#get-tag-list-response)
 
 ## Get Creator
 
@@ -231,4 +233,24 @@ DELETE /api/artworks/{{id}}
 
 ```js
 204 No Content
+```
+
+## Get Tag List
+
+### Get Tag List Request
+
+```js
+GET /api/tags
+```
+
+### Get Tag List Response
+
+```js
+200 Ok
+```
+
+```json
+{
+    "tags": ["Abstract", "Fantasy", "Nature"]
+}
 ```
