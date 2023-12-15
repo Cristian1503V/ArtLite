@@ -11,7 +11,10 @@ const config: Config = {
       colors: {
         background: "#101014",
         foreground: "#ffff",
-        input: "#331e3d",
+        input: {
+          DEFAULT: "#101014",
+          border: "#505054",
+        },
         thumbnailContainer: "#000000",
 
         secondary: {
