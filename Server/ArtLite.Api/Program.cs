@@ -37,7 +37,7 @@ var builder = WebApplication.CreateBuilder(args);
             policy => policy
                 .AllowAnyHeader()
                 .AllowAnyMethod()
-                .WithOrigins("http://localhost:3000");
+                .WithOrigins("http://localhost:3000")
         );
     });
 
