@@ -31,13 +31,14 @@ var builder = WebApplication.CreateBuilder(args);
     services.AddScoped<IImageUploader, CloudinaryService>();
 
 
-
     services.AddCors(options =>
     {
-        options.AddPolicy("CorsPolicy", policy => 
-        {
-            policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000");
-        });
+        options.AddPolicy("CorsPolicy",
+            policy => policy
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .WithOrigins("http://localhost:3000");
+        );
     });
 
     services.AddControllers();
@@ -55,6 +56,7 @@ var app = builder.Build();
         app.UseSwaggerUI();
     }
 
+    app.UseCors("CorsPolicy");
     app.MapControllers();
 
     app.Run();
