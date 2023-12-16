@@ -8,9 +8,10 @@ import { Icons } from "./icons"
 
 interface PreviewImageProps {
   file: PreviewableFile
+  closeHandler: React.MouseEventHandler<HTMLButtonElement>
 }
 
-export function PreviewImage({ file }: PreviewImageProps) {
+export function PreviewImage({ file, closeHandler }: PreviewImageProps) {
   return (
     <div className="relative flex flex-col gap-6 rounded-md border-[1px] border-[#303034]">
       <div className="flex h-full w-full items-center justify-center gap-5 overflow-hidden rounded-t-md bg-black py-10">
@@ -34,7 +35,7 @@ export function PreviewImage({ file }: PreviewImageProps) {
           </span>
         </div>
 
-        <button className="">
+        <button type="button" className="" onClick={closeHandler}>
           <Icons.close className="hover:text-accent-hover h-5 w-5" />
         </button>
       </div>
