@@ -31,6 +31,15 @@ var builder = WebApplication.CreateBuilder(args);
     services.AddScoped<IImageUploader, CloudinaryService>();
 
 
+
+    services.AddCors(options =>
+    {
+        options.AddPolicy("CorsPolicy", policy => 
+        {
+            policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000");
+        });
+    });
+
     services.AddControllers();
     services.AddEndpointsApiExplorer();
     services.AddSwaggerGen();    
