@@ -22,5 +22,6 @@ public record CreatorResponseBase
 (
     Guid IdCreator,
     string Username,
+    string Slug,
     string ProfileImage
 );

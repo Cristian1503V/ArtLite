@@ -21,11 +21,17 @@ public class ArtworkController : ApiController
     }
 
     [HttpPost]
+    [RequestSizeLimit(25 * 1024 * 1024)]
     public async Task<IActionResult> AddArtwork([FromForm] ArtworkCreateRequest artworkCreateRequest)
     {
         var uploadedImages = new List<Image>();
 
         var images = artworkCreateRequest.Images.ToList();
+
+        if (images.Count < 1)
+        {
+
+        }
 
         foreach(var image in images)
         {
@@ -121,6 +127,7 @@ public class ArtworkController : ApiController
         var creator = new CreatorResponseBase (
             IdCreator: artwork.Creator.IdCreator,
             Username: artwork.Creator.Username,
+            Slug: artwork.Creator.Slug,
             ProfileImage: artwork.Creator.ProfileImage
         );
             
@@ -144,6 +151,5 @@ public class ArtworkController : ApiController
             value: MapArtworkResponse(artwork)
         );
     }
-
 
 }
