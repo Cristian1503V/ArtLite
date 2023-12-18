@@ -14,7 +14,7 @@ export default function Creatorlayout({
   children: React.ReactNode
 }) {
   return (
-    <div className="bg-background flex max-h-screen min-h-screen flex-col">
+    <div className="bg-background flex  min-h-screen flex-col">
       <HeaderAuth />
       {children}
     </div>
