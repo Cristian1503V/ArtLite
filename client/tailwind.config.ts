@@ -36,6 +36,16 @@ const config: Config = {
         aside: {
           DEFAULT: "#202024",
         },
+
+        tag: {
+          DEFAULT: "#404044",
+          foreground: "#e6e6ea",
+        },
+
+        danger: {
+          DEFAULT: "hsl( 0 62.8% 30.6%)",
+          foreground: "hsl( 0 0% 98%)",
+        },
       },
     },
   },
