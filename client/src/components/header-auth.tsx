@@ -1,14 +1,14 @@
 import Link from "next/link"
 import { User } from "@/api/types"
 
-import { ButtonLink } from "./button-link"
-import { AppIcon, Icons } from "./icons"
+import { ButtonLink } from "@/components/button-link"
+import { AppIcon, Icons } from "@/components/icons"
 
 interface HeaderAuthProps {
   user?: Pick<User, "profileImage" | "userName">
 }
 
-export function HeaderAuth({ user }: HeaderAuthProps) {
+export function CardWrapper({ user }: HeaderAuthProps) {
   const Icon = Icons["upload"]
 
   return (
