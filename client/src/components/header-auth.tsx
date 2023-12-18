@@ -8,7 +8,7 @@ interface HeaderAuthProps {
   user?: Pick<User, "profileImage" | "userName">
 }
 
-export function CardWrapper({ user }: HeaderAuthProps) {
+export function HeaderAuth({ user }: HeaderAuthProps) {
   const Icon = Icons["upload"]
 
   return (

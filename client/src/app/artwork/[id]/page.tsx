@@ -1,7 +1,6 @@
 import React from "react"
 import { notFound, redirect } from "next/navigation"
 import { getArwork } from "@/api/actions"
-import toast from "react-hot-toast"
 
 import { urls } from "@/config/urls"
 import { Artwork } from "@/components/artwork/artwork"

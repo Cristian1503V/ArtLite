@@ -1,7 +1,6 @@
 "use client"
 
-import toast, { Toaster } from "react-hot-toast"
-
+// import toast, { Toaster } from "react-hot-toast"
 import { Icons } from "@/components/icons"
 
 interface DeleteButtonProps {
@@ -11,7 +10,7 @@ interface DeleteButtonProps {
 
 export function DeleteButton({ handler, children }: DeleteButtonProps) {
   const onClickHadler = () => {
-    toast("Si Funciono")
+    // toast("Si Funciono")
   }
 
   return (
@@ -24,7 +23,7 @@ export function DeleteButton({ handler, children }: DeleteButtonProps) {
         <span>{children}</span>
       </button>
 
-      <Toaster />
+      {/* <Toaster /> */}
     </form>
   )
 }
