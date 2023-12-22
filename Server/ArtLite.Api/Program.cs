@@ -1,5 +1,3 @@
-
-using ArtLite.Api;
 using ArtLite.Api.Persistence;
 using ArtLite.Api.Services;
 using ArtLite.Api.Settings;
@@ -22,7 +20,6 @@ var builder = WebApplication.CreateBuilder(args);
         options.ConfigureWarnings(warnings => warnings.Throw(RelationalEventId.MultipleCollectionIncludeWarning));
     });
 
-    // services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<Program>());
     services.Configure<CloudinarySettings>(configuration.GetSection(CloudinarySettings.SectionName));
 
     services.AddScoped<IArtworkService, ArtworkService>();
