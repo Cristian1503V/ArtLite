@@ -6,6 +6,7 @@ import {
   Figma,
   Heart,
   Image,
+  ImageMinus,
   Instagram,
   Linkedin,
   LogIn,
@@ -43,6 +44,7 @@ export const Icons = {
   image: Image,
   arrowUp: ArrowUp,
   close: X,
+  imageMinus: ImageMinus,
 }
 
 export function AppIcon() {

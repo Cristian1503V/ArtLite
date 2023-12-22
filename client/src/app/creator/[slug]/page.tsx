@@ -1,10 +1,9 @@
 import { notFound } from "next/navigation"
 import { getCreator } from "@/api/actions"
 
-import AsideCreator from "@/components/aside-creator"
-import CardWrapper from "@/components/card-wrapper"
-import Creations from "@/components/creations"
-import ProfileInformation from "@/components/profile-information"
+import { Aside } from "@/components/aside"
+import { Creations } from "@/components/creator/creations"
+import { ProfileInformation } from "@/components/creator/profile-information"
 
 interface CreatorPageProps {
   params: {
@@ -29,9 +28,9 @@ export default async function CreatorPage({ params }: CreatorPageProps) {
   return (
     <div className="relative flex h-full w-full flex-1 gap-6 px-6">
       <Creations creator={creator} />
-      <AsideCreator>
+      <Aside>
         <ProfileInformation creator={creator} />
-      </AsideCreator>
+      </Aside>
     </div>
   )
 }

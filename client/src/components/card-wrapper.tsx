@@ -1,10 +1,14 @@
-interface CardWrapperProps {
+import { cn } from "@/libs/utils"
+
+interface CardWrapperProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode
 }
 
-export default function CardWrapper({ children }: CardWrapperProps) {
+export function CardWrapper({ children, className }: CardWrapperProps) {
   return (
-    <div className="bg-aside flex flex-1 flex-col gap-8 rounded-2xl p-8">
+    <div
+      className={cn(className, "bg-aside flex flex-col gap-8 rounded-2xl p-8")}
+    >
       {children}
     </div>
   )

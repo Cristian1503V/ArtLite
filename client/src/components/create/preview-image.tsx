@@ -1,10 +1,8 @@
-import React from "react"
 import Image from "next/image"
 import { formatBytes } from "@/libs/utils"
 
 import { PreviewableFile } from "@/config/types"
-
-import { Icons } from "./icons"
+import { Icons } from "@/components/icons"
 
 interface PreviewImageProps {
   file: PreviewableFile

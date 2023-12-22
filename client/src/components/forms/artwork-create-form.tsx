@@ -2,20 +2,18 @@
 
 import React from "react"
 import { cn } from "@/libs/utils"
-import { DevTool } from "@hookform/devtools"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Controller, useForm } from "react-hook-form"
 import * as z from "zod"
 
 import { zodValidations } from "@/config/zod-validate"
-
-import { DropArea } from "../drop-area"
-import { Icons } from "../icons"
-import TitleWrapper from "../title-wrapper"
+import { DropArea } from "@/components/create/drop-area"
+import TitleWrapper from "@/components/create/title-wrapper"
+import { Icons } from "@/components/icons"
 
 const formSchema = z.object({
   title: zodValidations.validateString({ maxLength: 30, minLength: 4 }),
-  description: zodValidations.validateString({ maxLength: 30, minLength: 4 }),
+  description: zodValidations.validateString({ maxLength: 200, minLength: 4 }),
   images: z
     .any()
     .array()
@@ -56,7 +54,7 @@ export function ArtworkCreateForm() {
         {watchTitle === "" ? "Untitled" : watchTitle}
       </h2>
       <form onSubmit={handleSubmit(onSubmit)} className="flex">
-        <div className="flex h-full w-[75%] basis-[100%] flex-col">
+        <div className="flex h-full w-[70%] basis-[100%] flex-col">
           <TitleWrapper title="Artwork Title">
             <input
               className={cn(
@@ -109,7 +107,7 @@ export function ArtworkCreateForm() {
           )}
         </div>
 
-        <div className="w-[25%]">
+        <div className="w-[30%]">
           <TitleWrapper title="Publishing Options">
             <span className="text-secondary-foreground text-[14px]">
               Publish status

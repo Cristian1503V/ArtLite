@@ -5,7 +5,7 @@ import { Icons } from "./icons"
 
 interface ButtonLinkProps
   extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
-  href: string
+  href?: string
   variant?: "primary" | "secondary"
   children: React.ReactNode
   icon?: keyof typeof Icons
@@ -13,7 +13,7 @@ interface ButtonLinkProps
 }
 
 export function ButtonLink({
-  href,
+  href = "#",
   children,
   variant = "primary",
   icon,

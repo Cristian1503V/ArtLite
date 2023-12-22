@@ -5,9 +5,9 @@ import { ControllerRenderProps } from "react-hook-form"
 import { v4 as uuidv4 } from "uuid"
 
 import { PreviewableFile } from "@/config/types"
+import { FormSchema } from "@/components/forms/artwork-create-form"
+import { Icons } from "@/components/icons"
 
-import { FormSchema } from "./forms/artwork-create-form"
-import { Icons } from "./icons"
 import { PreviewImage } from "./preview-image"
 
 type DropType = <T extends File>(

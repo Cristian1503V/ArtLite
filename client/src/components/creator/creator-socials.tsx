@@ -1,13 +1,13 @@
 import Link from "next/link"
 
-import { Icons } from "./icons"
+import { Icons } from "../icons"
 
 interface CreatorSocialsProps {
-  href: string
+  href?: string
   icon: keyof typeof Icons
 }
 
-export default function CreatorSocials({ href, icon }: CreatorSocialsProps) {
+export function CreatorSocials({ href = "#", icon }: CreatorSocialsProps) {
   const Icon = Icons[icon || "thumbsUp"]
   return (
     <Link

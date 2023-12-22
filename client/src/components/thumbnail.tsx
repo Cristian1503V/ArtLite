@@ -2,21 +2,20 @@ import Image from "next/image"
 import Link from "next/link"
 import { ArtWorkThumbnail } from "@/api/types"
 
-// import { urls } from "@/config/urls"
+import { urls } from "@/config/urls"
 
 interface ThumbnailProps {
   artwork: ArtWorkThumbnail
 }
 
 export function Thumbnail({ artwork }: ThumbnailProps) {
-  const { thumbnail, title, creator } = artwork
+  const { thumbnail, title, creator, idArtwork } = artwork
   const { profileImage, username, idCreator } = creator
 
   return (
     <Link
       className="group relative h-full w-full overflow-hidden rounded-md"
-      // href={urls.artwork(idArtwork)}
-      href={""}
+      href={urls.artwork(idArtwork)}
     >
       <Image
         src={thumbnail}

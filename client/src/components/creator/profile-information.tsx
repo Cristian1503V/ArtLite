@@ -1,19 +1,16 @@
 import Image from "next/image"
 import { Creator } from "@/api/types"
-import { cn } from "@/libs/utils"
 
-import { ButtonLink } from "./button-link"
-import CardWrapper from "./card-wrapper"
-import CreatorSocials from "./creator-socials"
-import ToggleText from "./toggle-text"
+import { ButtonLink } from "@/components/button-link"
+import { CardWrapper } from "@/components/card-wrapper"
+import { CreatorSocials } from "@/components/creator/creator-socials"
+import { ToggleText } from "@/components/toggle-text"
 
 interface ProfileInformationProps {
   creator: Creator
 }
 
-export default function ProfileInformation({
-  creator,
-}: ProfileInformationProps) {
+export function ProfileInformation({ creator }: ProfileInformationProps) {
   const {
     profileImage,
     username,
@@ -26,7 +23,7 @@ export default function ProfileInformation({
   const { facebook, instagram, linkedin, figma, youtube } = socials
 
   return (
-    <CardWrapper>
+    <CardWrapper className="flex-1">
       <div className="flex flex-col items-center justify-center gap-1">
         <div className="mb-2 h-36 w-36">
           <Image
@@ -50,7 +47,7 @@ export default function ProfileInformation({
         <ButtonLink
           variant="primary"
           icon="userPlus"
-          href=""
+          href="#"
           className="cursor-not-allowed px-6 "
         >
           Follow
@@ -68,7 +65,7 @@ export default function ProfileInformation({
 
       <ToggleText text={biography} />
 
-      <div className="h-[2px] w-full bg-[#404044]"></div>
+      <div className="bg-muted h-[2px] w-full"></div>
 
       <div className="flex flex-col gap-6">
         <span className="text-[13px]">Follow in social</span>
@@ -81,7 +78,7 @@ export default function ProfileInformation({
         </div>
       </div>
 
-      <div className="h-[2px] w-full bg-[#404044]"></div>
+      <div className="bg-muted h-[2px] w-full"></div>
     </CardWrapper>
   )
 }

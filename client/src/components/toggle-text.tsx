@@ -7,7 +7,7 @@ interface ToggleTextProps {
   text?: string
 }
 
-export default function ToggleText({ text }: ToggleTextProps) {
+export function ToggleText({ text }: ToggleTextProps) {
   const [showText, setShowText] = useState(false)
 
   const handleOnClick = () => {
@@ -18,7 +18,7 @@ export default function ToggleText({ text }: ToggleTextProps) {
     <div>
       <span
         className={cn(
-          "line-clamp-2 whitespace-pre-line text-[13px]",
+          "line-clamp-1 whitespace-pre-line text-[13px]",
           showText && "mb-2 line-clamp-none"
         )}
       >

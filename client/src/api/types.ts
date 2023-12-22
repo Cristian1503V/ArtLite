@@ -40,3 +40,17 @@ type ArtworkBase = {
   thumbnail: string
   createdAt: Date
 }
+
+export type ArtWork = {
+  idArtwork: string
+  title: string
+  description?: string
+  tags: string[]
+  images: {
+    src: string
+    order: number
+  }[]
+  creator: Pick<Creator, "idCreator" | "username" | "profileImage" | "slug">
+  createdAt: Date
+  updatedAt: Date
+}
