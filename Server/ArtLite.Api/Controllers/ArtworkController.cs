@@ -39,8 +39,13 @@ public class ArtworkController : ApiController
 
             var uploadedImage = await _imageUploader.AddImage(file: image);
 
-            uploadedImage.Order = index + 1;
-            uploadedImages.Add(uploadedImage);
+            if (uploadedImage.IsError)
+            {
+                return Problem(uploadedImage.Errors);
+            }
+
+            uploadedImage.Value.Order = index + 1;
+            uploadedImages.Add(uploadedImage.Value);
         }
 
         var artwork = MapArtworkRequest(artworkCreateRequest);

@@ -24,7 +24,7 @@ public class ArtworkService : IArtworkService
 
         if (creator is null)
         {
-            return CreatorError.NotFound;
+            return Errors.Creator.NotFound;
         }
 
         var tagsList = newArtwork.Tags
@@ -54,7 +54,7 @@ public class ArtworkService : IArtworkService
 
         if (artwork is null)
         {
-            return ArtworkError.NotFound;
+            return Errors.Artwork.NotFound;
         }
 
         var images = artwork.Images.ToList();
@@ -79,7 +79,7 @@ public class ArtworkService : IArtworkService
 
         if (artwork is null)
         {
-            return ArtworkError.NotFound;
+            return Errors.Artwork.NotFound;
         }
 
         return artwork;
@@ -96,7 +96,7 @@ public class ArtworkService : IArtworkService
 
         if (artwork is null)
         {
-            return ArtworkError.NotFound;
+            return Errors.Artwork.NotFound;
         }
 
         var tagsList = updatedArtwork.Tags?.Select(tag => tag.TagName);

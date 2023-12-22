@@ -1,7 +1,9 @@
 ﻿using ArtLite.Api.Entities;
+using ArtLite.Api.ServiceErrors;
 using ArtLite.Api.Settings;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
+using ErrorOr;
 using Microsoft.Extensions.Options;
 
 namespace ArtLite.Api.Services;
@@ -23,7 +25,7 @@ public class CloudinaryService : IImageUploader
         _cloudinary = new Cloudinary(account);
     }
 
-    public async Task<Image> AddImage(IFormFile file)
+    public async Task<ErrorOr<Image>> AddImage(IFormFile file)
     {
         var uploadResult = new ImageUploadResult();
 
@@ -42,7 +44,7 @@ public class CloudinaryService : IImageUploader
 
         if (uploadResult.Error != null)
         {
-            throw new Exception(uploadResult.Error.Message);
+            return Errors.Image.Upload;
         }
 
         return new Image

@@ -5,6 +5,6 @@ namespace ArtLite.Api.Services;
 
 public interface IImageUploader
 {
-    Task<Image> AddImage(IFormFile file);
+    Task<ErrorOr<Image>> AddImage(IFormFile file);
     Task<bool> DeleteImage(string publicId);
 }

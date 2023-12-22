@@ -20,7 +20,7 @@ public class TagService : ITagService
 
         if (tags is null)
         {
-            return TagError.NotFound;
+            return Errors.Tag.Empty;
         }
 
         return tags;

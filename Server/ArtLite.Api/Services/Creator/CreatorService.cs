@@ -24,7 +24,7 @@ public class CreatorService : ICreatorService
 
         if (creator is null)
         {
-            return CreatorError.NotFound;
+            return Errors.Creator.NotFound;
         }
 
         return creator;
@@ -39,7 +39,7 @@ public class CreatorService : ICreatorService
 
         if (creator is null)
         {
-            return CreatorError.NotFound;
+            return Errors.Creator.NotFound;
         }
 
         return creator;
