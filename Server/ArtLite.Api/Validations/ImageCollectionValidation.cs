@@ -2,7 +2,7 @@
 
 namespace ArtLite.Api.Validations;
 
-[AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter, AllowMultiple = false)]
+[AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
 public class ImageCollectionValidation : ValidationAttribute
 {
     protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
@@ -14,7 +14,7 @@ public class ImageCollectionValidation : ValidationAttribute
 
         foreach (var image in images)
         {
-            if (!ImageCollectionValidation.IsImageValid(image))
+            if (!IsImageValid(image))
             {
                 return new ValidationResult(ErrorMessage);
             }

@@ -12,7 +12,7 @@ public class ArtworkController : ApiController
     private readonly IArtworkService _artworkService;
     private readonly IImageUploader _imageUploader;
 
-    private readonly Guid idCreatorExample = Guid.Parse("0402fa21-7faf-49b6-994e-10ffe3e022ae"); 
+    private readonly Guid idCreatorExample = Guid.Parse("d53570c7-8651-4fc6-9cce-15848be6f289"); 
 
     public ArtworkController(IArtworkService artworkService, IImageUploader imageUploader)
     {
