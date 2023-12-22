@@ -59,10 +59,8 @@ public class ArtworkService : IArtworkService
 
         var images = artwork.Images.ToList();
 
-        foreach (var image in images)
-        {
-            await _imageUploader.DeleteImage(image.CloudId);
-        }
+        var deleteImageTasks = images.Select(image => _imageUploader.DeleteImage(image.CloudId));
+        await Task.WhenAll(deleteImageTasks);
         
         _dbContext.Remove(artwork);
         await _dbContext.SaveChangesAsync();
