@@ -9,9 +9,6 @@
   - [Get Artwork](#get-artwork)
     - [Get Artwork Request](#get-artwork-request)
     - [Get Artwork Response](#get-artwork-response)
-  - [Update Artwork](#update-artwork)
-    - [Update Artwork Request](#update-artwork-request)
-    - [Update Artwork Response](#update-artwork-response)
   - [Delete Artwork](#delete-artwork)
     - [Delete Artwork Request](#delete-artwork-request)
     - [Delete Artwork Response](#delete-artwork-response)
@@ -35,39 +32,38 @@ GET /api/creators/:idCreator
 
 ```json
 {
-    "idCreator": "",
+    "idCreator": "00000000-0000-0000-0000-000000000000",
     "username": "Sebastian Cavazzoli",
+    "slug": "sebastian_cavazzoli",
     "email": "sebas@gmail.com",
     "highlightedPhrase?": "3D Character Artist",
     "biography?": "3D Character Artist. I have a passion for 3D art. Currently working on my own personal projects!",
     "socials": {
-        "instagram?": "",
-        "youtube?": "",
+        "instagram?": "https://www.instagram.com/sebacavazzoli.art",
+        "youtube?": "https://www.youtube.com/sebastiancavazzoli",
         "facebook?": "",
         "linkedin?": "",
         "figma?": ""
     },
     "profileImage?": "https://cdna.artstation.com/p/users/avatars/000/583/624/large/21ab51c6fdec0656327acd1decc6b95f.jpg?1521491898",
-    "profileBanner?": "",
+    "profileBanner?": "https://cdna.artstation.com/p/users/covers/000/583/624/default/73c0b86e24cfe09e6954896a1b24b5c0.jpg?1687826140",
     "artworks": [
         {
-            "idArtwork": "",
-            "title": "",
-            "thumbnail": "",
-            "createdAt": ""
+            "idArtwork": "00000000-0000-0000-0000-000000000000",
+            "title": "3D Character",
+            "thumbnail": "https://cdnb.artstation.com/p/assets/images/images/070/397/485/20231212212844/smaller_square/sebastian-cavazzoli-2313313.jpg?1702438125",
+            "createdAt": "2023-08-02T23:46:06.1367502"
         },
         {
-            "idArtwork": "",
-            "title": "",
-            "thumbnail": "",
-            "createdAt": ""
+            "idArtwork": "00000000-0000-0000-0000-000000000000",
+            "title": "Pirate",
+            "thumbnail": "https://cdnb.artstation.com/p/assets/images/images/064/384/223/smaller_square/sebastian-cavazzoli-1.jpg?1687806929",
+            "createdAt": "2023-05-29T07:19:57.9192814"
         }
     ],
-    "createdAt": "",
-    "updatedAt": "",
+    "createdAt": "2023-12-15T01:39:50.8766667",
+    "updatedAt": "2023-12-22T01:13:53.73"
 }
-
-
 ```
 
 
@@ -85,7 +81,7 @@ Content-Type: multipart/form-data
 
 ```json
 {
-    "title": "Glober",
+    "title": "Goblins",
     "description?": "3D character that I've been working to be part of Globant Game Studio's Portfolio.",
     "tags": [
         "Digital 2D",
@@ -114,23 +110,29 @@ Location: {{host}}/api/artworks/{{id}}
 
 ```json
 {
-    "idArtwork": "",
-    "title": "",
-    "description?": "",
-    "tags": ["Digital 3D", "Concept Art"],
+    "idArtwork": "00000000-0000-0000-0000-000000000000",
+    "title": "Goblins",
+    "description?": "3D character that I've been working to be part of Globant Game Studio's Portfolio.",
+    "tags": [
+        "Digital 2D",
+        "Fantasy",
+        "Concept Art",
+        "Storytelling"
+    ],
     "images": [
-        { "order": 1, "src": "img1.jpg" },
-        { "order": 2, "src": "img2.jpg" },
-        { "order": 3, "src": "img3.jpg" },
-        { "order": 4, "src": "img4.jpg" },
+        { "order": 1, "src": "https://cdnb.artstation.com/p/assets/images/images/037/967/575/large/sebastian-cavazzoli-1b.jpg?1621815282" },
+        { "order": 2, "src": "https://cdna.artstation.com/p/assets/images/images/037/967/578/large/sebastian-cavazzoli-3.jpg?1621815288" },
+        { "order": 3, "src": "https://cdna.artstation.com/p/assets/images/images/037/967/552/large/sebastian-cavazzoli-4.jpg?1621815193" },
+        { "order": 4, "src": "https://cdna.artstation.com/p/assets/images/images/037/967/556/large/sebastian-cavazzoli-6.jpg?1621815211" },
     ],
     "creator": {
-        "idCreator": "",
+        "idCreator": "00000000-0000-0000-0000-000000000000",
         "username": "Sebastian Cavazzoli",
+        "slug": "sebastian_cavazzoli",
         "profileImage": "https://cdna.artstation.com/p/users/avatars/000/583/624/large/21ab51c6fdec0656327acd1decc6b95f.jpg?1521491898",
     },
-    "createdAt": "",
-    "updatedAt": ""
+    "createdAt": "2023-10-24T09:02:25.8272588",
+    "updatedAt": "2023-12-22T01:15:51.173"
 }
 
 ```
@@ -151,74 +153,30 @@ GET /api/artworks/{{id}}
 
 ```json
 {
-    "idArtwork": "",
-    "title": "",
-    "description?": "",
-    "tags": ["Digital 3D", "Concept Art"],
-    "images": [
-        { "order": 1, "src": "img1.jpg" },
-        { "order": 2, "src": "img2.jpg" },
-        { "order": 3, "src": "img3.jpg" },
-        { "order": 4, "src": "img4.jpg" },
-    ],
-    "creator": {
-        "idCreator": "",
-        "username": "Sebastian Cavazzoli",
-        "profileImage": "https://cdna.artstation.com/p/users/avatars/000/583/624/large/21ab51c6fdec0656327acd1decc6b95f.jpg?1521491898",
-    },
-    "createdAt": "",
-    "updatedAt": ""
-}
-```
-
-## Update Artwork
-
-### Update Artwork Request
-
-```js
-PUT /api/artworks/{{id}}
-```
-
-```json
-{
-    "title": "Glober",
+    "idArtwork": "00000000-0000-0000-0000-000000000000",
+    "title": "Goblins",
     "description?": "3D character that I've been working to be part of Globant Game Studio's Portfolio.",
     "tags": [
         "Digital 2D",
         "Fantasy",
         "Concept Art",
         "Storytelling"
-    ]
-}
-```
-
-### Update Artwork Response
-
-```js
-200 Ok
-```
-
-```json
-{
-    "idArtwork": "",
-    "title": "",
-    "description?": "",
-    "tags": ["Digital 3D", "Concept Art"],
+    ],
     "images": [
-        { "order": 1, "src": "img1.jpg" },
-        { "order": 2, "src": "img2.jpg" },
-        { "order": 3, "src": "img3.jpg" },
-        { "order": 4, "src": "img4.jpg" },
+        { "order": 1, "src": "https://cdnb.artstation.com/p/assets/images/images/037/967/575/large/sebastian-cavazzoli-1b.jpg?1621815282" },
+        { "order": 2, "src": "https://cdna.artstation.com/p/assets/images/images/037/967/578/large/sebastian-cavazzoli-3.jpg?1621815288" },
+        { "order": 3, "src": "https://cdna.artstation.com/p/assets/images/images/037/967/552/large/sebastian-cavazzoli-4.jpg?1621815193" },
+        { "order": 4, "src": "https://cdna.artstation.com/p/assets/images/images/037/967/556/large/sebastian-cavazzoli-6.jpg?1621815211" },
     ],
     "creator": {
-        "idCreator": "",
+        "idCreator": "00000000-0000-0000-0000-000000000000",
         "username": "Sebastian Cavazzoli",
+        "slug": "sebastian_cavazzoli",
         "profileImage": "https://cdna.artstation.com/p/users/avatars/000/583/624/large/21ab51c6fdec0656327acd1decc6b95f.jpg?1521491898",
     },
-    "createdAt": "",
-    "updatedAt": ""
+    "createdAt": "2023-10-24T09:02:25.8272588",
+    "updatedAt": "2023-12-22T01:15:51.173"
 }
-
 ```
 
 ## Delete Artwork
