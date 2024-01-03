@@ -54,3 +54,7 @@ export type ArtWork = {
   createdAt: Date
   updatedAt: Date
 }
+
+export type TagsResponse = {
+  tags: string[]
+}
