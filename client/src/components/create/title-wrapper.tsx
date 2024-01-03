@@ -3,7 +3,7 @@ interface TitleWrapperProps {
   children: React.ReactNode
 }
 
-export default function TitleWrapper({ title, children }: TitleWrapperProps) {
+export function TitleWrapper({ title, children }: TitleWrapperProps) {
   return (
     <div className="flex flex-col px-4 py-6">
       <div className="rounded-t-md bg-[#303034] px-3 py-2">
