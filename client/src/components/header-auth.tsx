@@ -12,7 +12,7 @@ export function HeaderAuth({ user }: HeaderAuthProps) {
   const Icon = Icons["upload"]
 
   return (
-    <header className="bg-background sticky top-0 z-50 flex h-16 w-full items-center justify-between px-7 py-5">
+    <header className="bg-background sticky top-0 z-40 flex h-16 w-full items-center justify-between px-7 py-5">
       <Link href={"/"}>
         <AppIcon />
       </Link>
