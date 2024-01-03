@@ -46,6 +46,12 @@ const config: Config = {
           DEFAULT: "hsl( 0 62.8% 30.6%)",
           foreground: "hsl( 0 0% 98%)",
         },
+
+        modal: {
+          DEFAULT: "#101014",
+          buttonCancel: "hsl( 0 62.8% 30.6%)",
+          buttonConfirm: "#404044",
+        },
       },
     },
   },
