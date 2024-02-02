@@ -1,6 +1,7 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { notFound, redirect } from "next/navigation"
 import { getArwork } from "@/api/actions"
+import toast from "react-hot-toast"
 
 import { urls } from "@/config/urls"
 import { Artwork } from "@/components/artwork/artwork"
@@ -33,11 +34,11 @@ export default async function ArtworkPage({ params }: ArtworkPageProps) {
 
   const { title, tags, creator, idArtwork, description } = artwork
 
-  const onDelete = async () => {
-    "use server"
-    // deleteArwork(idArtwork)
-    return redirect(urls.creator(creator.slug))
-  }
+  // const onDelete = async () => {
+  //   "use server"
+  //   // deleteArwork(idArtwork)
+  //   return redirect(urls.creator(creator.slug))
+  // }
 
   return (
     <div className="relative flex h-full w-full flex-1 gap-6 px-6">
@@ -67,7 +68,13 @@ export default async function ArtworkPage({ params }: ArtworkPageProps) {
           <div>
             <CardWrapper>
               <span className="text-foreground text-sm font-bold">Options</span>
-              <DeleteButton handler={onDelete}>Delete</DeleteButton>
+              <DeleteButton
+                idArtwork={idArtwork}
+                slug={creator.slug}
+                idCreator={creator.idCreator}
+              >
+                Delete
+              </DeleteButton>
             </CardWrapper>
           </div>
         </Aside>

@@ -25,8 +25,8 @@ export function Thumbnail({ artwork }: ThumbnailProps) {
         quality={100}
       />
 
-      <div className="group-hover:animate-fade animate-ease-in-out absolute bottom-0 z-10 hidden h-full w-full bg-gradient-to-t from-black via-transparent group-hover:block">
-        <div className="group-hover:animate-fade-right animate-normal absolute bottom-0 flex items-center gap-2 px-2 py-4">
+      <div className="group-hover:animate-fade animate-duration-200 absolute bottom-0 z-10 hidden h-full w-full bg-gradient-to-t from-black via-transparent group-hover:block">
+        <div className="group-hover:animate-fade-right animate-duration-200 absolute bottom-0 flex items-center gap-2 px-2 py-4">
           <Image
             src={profileImage ?? ""}
             alt={username}

@@ -70,7 +70,7 @@ export function DropArea({
         <div className="border-b border-[#303034] py-2">
           <div className="flex w-28 flex-col border-r border-[#303034] pr-2 ">
             <div className="hover:bg-muted flex cursor-pointer flex-col items-center justify-center rounded-md py-4 transition-all">
-              <input className="hidden" {...getInputProps()} />
+              <input className="hidden" {...getInputProps()} onBlur={onBlur} />
               <Icons.image className="text-accent" />
               <span className="text-[14px] font-bold">HQ Images</span>
               <span className="text-secondary-foreground text-[12px]">

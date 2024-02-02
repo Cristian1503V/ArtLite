@@ -22,12 +22,19 @@ export function Artwork({ artwork }: ArtWorksProps) {
 
   if (!data) notFound()
 
+  let gallery
   const { images, title } = data
   images.sort((a, b) => a.order - b.order)
+  if (images.length > 1) {
+    const [thumbnail, ...rest] = images
+    gallery = rest
+  } else {
+    gallery = images
+  }
 
   return (
     <div className="bg-thumbnailContainer mb-4 flex basis-[100%] flex-col gap-8 rounded-2xl py-5">
-      {images?.map((image) => (
+      {gallery?.map((image) => (
         <Portrait key={image.order} src={image.src} name={title} />
       ))}
     </div>
